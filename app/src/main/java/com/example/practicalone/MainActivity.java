@@ -10,6 +10,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private TextView textView;
     private Button button;
+    private boolean isShowing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initUI() {
+        isShowing = false;
         textView = findViewById(R.id.textView);
         button = findViewById(R.id.button);
     }
@@ -30,6 +32,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        textView.animate().scaleX(0.8f).scaleY(0.8f).alpha(1).setDuration(1000).start();
+        if (isShowing) {
+            textView.animate().scaleX(0.2f).scaleY(0.2f).alpha(0).setDuration(500).start();
+        } else {
+            textView.animate().scaleX(0.8f).scaleY(0.8f).alpha(1).setDuration(500).start();
+        }
+
+        isShowing = !isShowing;
     }
 }
